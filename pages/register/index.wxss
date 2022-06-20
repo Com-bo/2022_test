@@ -1,0 +1,38 @@
+.con_wrap{
+  padding: 0 40rpx;
+}
+.operat{
+  display: flex;
+}
+.operat view{
+  margin-left: 50rpx;
+  color: blueviolet;
+}
+.taocan_right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.taocan_right view{
+  border: 1rpx solid #aaaaaa;
+  padding: 10rpx 15rpx;
+  border-radius: 15rpx;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+}
+
+
+
+
+.sub_reg{
+  width: 100%;
+  height: 100rpx;
+  background-color: green;
+  position: fixed;
+  left: 0;
+  bottom: 0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}

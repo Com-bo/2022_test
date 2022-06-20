@@ -1,0 +1,13 @@
+  <i-panel class="cell-panel-demo">
+    <i-cell-group>
+      <block wx:for="{{areaData}}" wx:key="index">
+            <i-cell title="分组{{index+1}}:" value="{{item.name}}" is-link url="/pages/register/index"></i-cell>
+      </block>
+    </i-cell-group>
+  </i-panel>
+
+  <i-modal title="选择区域" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+    <i-input value="{{ value }}" title="分组" placeholder="11" maxlength="20"/>
+</i-modal>
+  <i-button type="success" bindtap="handleOpen1">添加分组</i-button>
+  <i-button type="error">删除分组</i-button>

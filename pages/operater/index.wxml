@@ -1,0 +1,74 @@
+<!--index.wxml-->
+<view class="con_wrap">
+  <view class="user_wrap">
+    <view class="userinfo">
+      <block wx:if="{{canIUseOpenData}}">
+        <view class="userinfo-avatar" bindtap="bindViewTap">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <open-data type="userNickName"></open-data>
+      </block>
+      <block wx:elif="{{!hasUserInfo}}">
+          <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+        <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取昵称 </button>
+        <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="device_info">
+      <view class="dev_info">设备台数：
+        <view class="dev_data">300</view>台
+      </view>
+      <view class="dev_info">收益总数：
+        <view class="dev_data">1000</view>元
+      </view>
+    </view>
+  </view>
+</view>
+
+<i-panel>
+    <i-cell title="{{currentArea}}" label="为当前区域">
+      <view class="operat" slot="footer">
+        <view bindtap="handleOpen1">切换区域</view>
+        <view bindtap="getgroup">设置区域</view>
+      </view>
+    </i-cell>
+</i-panel>
+<i-modal title="选择区域" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+      <i-radio-group current="{{currentArea}}" bindchange="handleFruitChange">
+          <i-radio wx:for="{{areaGroup}}" wx:key="index" value="{{item.name}}" labelId="{{item.id}}">
+          </i-radio>
+      </i-radio-group>
+</i-modal>
+
+<view class="con_wrap">
+  <i-row i-class="tit-row">
+      <i-col span="4" i-class="tit-col">名称</i-col>
+      <i-col span="4" i-class="tit-col">ID</i-col>
+      <i-col span="4" i-class="tit-col">编号</i-col>
+      <i-col span="4" i-class="tit-col">类型</i-col>
+      <i-col span="4" i-class="tit-col">备注</i-col>
+      <i-col span="4" i-class="tit-col">标签</i-col>
+  </i-row>
+  <block wx:for="{{currentDev}}" wx:key="index">
+      <i-row i-class="title-row">
+          <i-col span="4" i-class="tit-col">{{item.name}}</i-col>
+          <i-col span="4" i-class="tit-col">{{item.deviceId}}</i-col>
+          <i-col span="4" i-class="tit-col">{{item.deviceNo}}</i-col>
+          <i-col span="4" i-class="tit-col">{{item.deviceType}}</i-col>
+          <i-col span="4" i-class="tit-col">{{item.memo}}</i-col>
+          <i-col span="4" i-class="tit-col">{{item.tag}}</i-col>
+      </i-row>
+    </block>
+    <view class="nodata" hidden="{{currentDev.length!=0}}">
+      暂无数据
+    </view>
+</view>
+
+
+  <view class="scanbox">
+    <i-icon class="scancode" bindtap="scanCodeEvent" type="scan"  size="28" color="#ffffff"></i-icon>
+  </view>

@@ -1,0 +1,27 @@
+<i-panel>
+    <i-input value="{{ value1 }}" title="设备唯一码" maxlength="20"/>
+    <i-input value="{{ value2 }}" type="number" title="设备编号" maxlength="20" />
+    <i-input value="{{ value3 }}" title="备注" maxlength="20" maxlength="20" />
+    <i-input value="{{ value4 }}" title="标签（选填）" maxlength="20"/>
+</i-panel>
+
+<i-panel>
+      <i-cell title="服务套餐（脉冲版）">
+        <view class="operat" slot="footer">
+          <view>套餐匹配</view>
+          <view>添加</view>
+        </view>
+      </i-cell>
+</i-panel>
+<i-panel>
+    <i-cell-group>
+    <block wx:for="{{taocanData}}" wx:key="index">
+      <i-cell title="套餐{{index+1}}" label="{{item.price}}元/{{item.duration}}分钟/{{item.pulse}}币">
+        <view class="taocan_right" slot="footer">
+          <view>编辑</view>
+          <view>删除</view>
+        </view>
+      </i-cell>
+    </block>
+  </i-cell-group>
+</i-panel>
