@@ -1,13 +1,27 @@
   <i-panel class="cell-panel-demo">
     <i-cell-group>
       <block wx:for="{{areaData}}" wx:key="index">
-            <i-cell title="分组{{index+1}}:" value="{{item.name}}" is-link url="/pages/register/index"></i-cell>
+            <i-cell title="分组{{index+1}}:">
+              <view class="operat" slot="footer">
+                <view>{{item.name}}</view>
+                <view hidden="{{editMark}}">
+                <i-icon class="i_icon" bindtap="scanCodeEvent" type="brush"  size="20" color="#000000"></i-icon>
+                </view>
+                <view hidden="{{delMark}}">
+                <i-icon class="i_icon" bindtap="scanCodeEvent" type="delete"  size="20" color="#000000"></i-icon>
+                </view>
+              </view>
+            </i-cell>
       </block>
     </i-cell-group>
   </i-panel>
 
-  <i-modal title="选择区域" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
-    <i-input value="{{ value }}" title="分组" placeholder="11" maxlength="20"/>
+  <i-modal title="选择区域" visible="{{ visible1 }}" bind:ok="addFn" bind:cancel="handleClose">
+    <i-input value="{{ areavalue }}" title="分组" placeholder="请输入" maxlength="20" bind:change="addChange"/>
 </i-modal>
-  <i-button type="success" bindtap="handleOpen1">添加分组</i-button>
-  <i-button type="error">删除分组</i-button>
+<view class="btnGroup">
+  <i-button type="success" inline bindtap="handleOpen">添加</i-button>
+  <i-button type="warning" inline bindtap="editFn">编辑</i-button>
+  <i-button type="error" inline bindtap="delFn">删除</i-button>
+</view>
+<i-toast id="toast" />

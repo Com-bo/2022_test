@@ -1,13 +1,6 @@
 .con_wrap{
   padding: 0 40rpx;
 }
-.operat{
-  display: flex;
-}
-.operat view{
-  margin-left: 50rpx;
-  color: blueviolet;
-}
 .taocan_right{
   display: flex;
   justify-content: center;

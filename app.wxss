@@ -8,3 +8,11 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.operat{
+  display: flex;
+  align-items: center;
+}
+.operat .i_icon{
+  margin-left: 10rpx;
+  padding: 0 10rpx;
+}

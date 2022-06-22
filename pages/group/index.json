@@ -5,6 +5,8 @@
         "i-panel": "../../dist/panel/index",
         "i-cell-group":"../../dist/cell-group/index",
         "i-modal": "../../dist/modal/index",
-        "i-input":"../../dist/input/index"
+        "i-input":"../../dist/input/index",
+        "i-icon": "../../dist/icon/index",
+        "i-toast": "../../dist/toast/index"
       }
 }

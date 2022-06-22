@@ -96,11 +96,14 @@ findDev(area){
     })
   },
   scanCodeEvent(){
-    wx.scanCode({
-      onlyFromCamera: true,
-      success (res) {
-        console.log(res)
-      }
+    // wx.scanCode({
+    //   onlyFromCamera: true,
+    //   success (res) {
+    //     console.log(res)
+    //   }
+    // })
+    wx.navigateTo({
+      url: '../register/index',
     })
   },
   getgroup(){
