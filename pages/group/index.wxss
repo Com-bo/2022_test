@@ -17,3 +17,7 @@ page{
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .5), 0 0 6px rgba(0, 0, 0,0.5)
 }
+
+.Mymodel .i-input{
+  color: #ffffff !important;
+}

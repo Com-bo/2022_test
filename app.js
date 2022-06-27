@@ -15,6 +15,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    URL:"http://ygcd.tidylink.cn/"
+    URL:"http://ygcd.tidylink.cn:63071/"
   }
 })

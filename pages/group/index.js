@@ -1,6 +1,7 @@
 const app = getApp()
 const URL=app.globalData.URL
 const { $Toast } = require('../../dist/base/index');
+const { $Message } = require('../../dist/base/index');
 Page({
 
   /**
@@ -10,9 +11,13 @@ Page({
     editMark:true,
     delMark:true,
     areaData:[],
-    visible1:false,
-    areavalue:""
+    visible:false,
+    areavalue:"",
+    dataId:"",
+    dataIndex:"",
+    funType:0
   },
+  // 打开关闭编辑删除
   editFn(){
     this.setData({
       editMark: !this.data.editMark
@@ -23,14 +28,15 @@ Page({
       delMark: !this.data.delMark
     });
   },
+  // 打开关闭模态框
   handleOpen () {
     this.setData({
-        visible1: true
+        visible: true
     });
   },
   handleClose () {
     this.setData({
-        visible1: false
+        visible: false
     });
   },
 
@@ -40,16 +46,64 @@ Page({
       areavalue:e.detail.detail.value
     })
   },
-  addFn(){
-    this.saveData("",this.data.areavalue)
+  operateFn(){
+    var that=this
+    console.log(that.data.dataId)
+    switch(that.data.funType){
+      case "0":
+        if(that.data.areavalue==""){
+          $Message({
+              content: '名称不能为空',
+              duration: 3,
+              type: 'error'
+          });
+        }else{
+          that.saveData("",that.data.areavalue)
+        }
+        break;
+      case "1":
+        if(that.data.areavalue==""){
+          $Message({
+            content: '名称不能为空',
+            duration: 3,
+            type: 'error'
+          });
+        }else{
+          that.saveData(that.data.dataId,that.data.areavalue)
+        }
+        break;
+      case "2":
+        that.delData(that.data.dataId)
+        break;
+    }
+  },
+  getDataEvent(e){
+    var that=this
+    this.setData({
+      funType:e.currentTarget.dataset.funtype
+    })
+    that.handleOpen()
+    if(e.currentTarget.dataset.funtype!=0){
+      that.setData({
+        areavalue:e.currentTarget.dataset.dataname,
+        dataIndex:e.currentTarget.dataset.dataindex,
+        dataId:e.currentTarget.dataset.dataid
+      });
+    }else{
+      that.setData({
+        areavalue:"",
+        dataIndex:"",
+        dataId:""
+      });
+    }
   },
   // 接口请求
   getData(){
-    $Toast({
-      content: '加载中',
-      type: 'loading',
-      duration:0
-    });
+    // $Toast({
+    //   content: '页面加载中',
+    //   type: 'loading',
+    //   duration:0
+    // });
     var that=this
       wx.request({
         url: URL+'apps/ygcd/area/list', 
@@ -58,12 +112,11 @@ Page({
           that.setData({
             areaData:res.data.data
           })
-          $Toast.hide()
+          // $Toast.hide()
         }
       })
   },
   saveData (id,name) {
-    console.log(id,name)
     $Toast({
       content: '加载中',
       type: 'loading',
@@ -71,15 +124,46 @@ Page({
     });
       var that=this
       wx.request({
-        url: URL+'apps/ygcd/area/save', 
+        url: URL+'apps/ygcd/area/save',
+        method:"POST",
+        header:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           id,
-          name:1213231
+          name
         },
         success (res) {
-          console.log(res)
           $Toast.hide()
           that.getData()
+          that.handleClose()
+          $Toast({
+            content: '操作成功',
+            type: 'success',
+            duration:1
+          });
+        }
+      })
+  },
+  delData (id) {
+    $Toast({
+      content: '加载中',
+      type: 'loading',
+      duration:0
+    });
+      var that=this
+      wx.request({
+        url: URL+`apps/ygcd/area/del?id=${id}`,
+        method:"DELETE",
+        success (res) {
+          $Toast.hide()
+          that.getData()
+          that.handleClose()
+          $Toast({
+            content: '操作成功',
+            type: 'success',
+            duration:1
+          });
         }
       })
   },
