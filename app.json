@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/group/index",
-    "pages/operater/index",
-    "pages/register/index",
+    "pages/taocanRegister/index",
+    "pages/home/index",
+    "pages/devRegister/index",
+    "pages/areaGroup/index",
     "pages/index/index",
     "pages/logs/index"
   ],
@@ -16,6 +17,21 @@
     "scope.userLocation": {
       "desc": "请点击确定"
     }
+  },
+  "usingComponents": {
+    "i-input":"../../dist/input/index",
+    "i-toast": "../../dist/toast/index",
+    "i-panel": "../../dist/panel/index",
+    "i-cell": "../../dist/cell/index",
+    "i-cell-group":"../../dist/cell-group/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-icon": "../../dist/icon/index",
+    "i-modal": "../../dist/modal/index",
+    "i-button": "../../dist/button/index",
+    "i-message": "../../dist/message/index",
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index"
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,21 +1,6 @@
 .con_wrap{
   padding: 0 40rpx;
 }
-.taocan_right{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.taocan_right view{
-  border: 1rpx solid #aaaaaa;
-  padding: 10rpx 15rpx;
-  border-radius: 15rpx;
-  margin-left: 20rpx;
-  font-size: 24rpx;
-}
-
-
-
 
 .sub_reg{
   width: 100%;

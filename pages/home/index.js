@@ -11,7 +11,10 @@ Page({
     visible1: false,
     areaGroup:[],
     currentArea:"",
-    currentDev:[]
+    currentDev:[],
+    actionsOk:[{name:"确定"}],
+    currentRadioArea:"",
+    currentRadioAreaId:""
   },
   handleOpen1 () {
     this.setData({
@@ -23,13 +26,20 @@ Page({
         visible1: false
     });
 },
+actionsOkFn({ detail }){
+  var that=this
+  that.setData({
+    currentArea: that.data.currentRadioArea,
+    currentAreaId:that.data.currentRadioAreaId
+  });
+  that.findDev(that.data.currentAreaId)
+  that.handleClose1()
+},
 handleFruitChange(val) {
   var that=this
   that.setData({
-    currentArea: val.detail.value,
-    currentAreaId:val.detail.labelId
-  },()=>{
-    that.findDev(that.data.currentAreaId)
+    currentRadioArea: val.detail.value,
+    currentRadioAreaId:val.detail.labelId
   });
 },
 findDev(area){
@@ -56,15 +66,17 @@ findDev(area){
   onLoad() {
     var that=this
     wx.request({
-      url: URL+'apps/ygcd/a/area', 
+      url: URL+'apps/ygcd/area/list', 
       method:"GET",
       success (res) {
         console.log(res.data)
         that.setData({
           areaGroup:res.data.data,
-          currentArea:res.data.data[0]["name"]
+          currentArea:res.data.data[0]["name"],
+          currentRadioArea:res.data.data[0]["name"],
+          currentAreaId:res.data.data[0]["id"]
         },()=>{
-          that.findDev(res.data.data[0]["id"])
+          that.findDev(that.data.currentAreaId)
         })
       }
     })
@@ -103,12 +115,12 @@ findDev(area){
     //   }
     // })
     wx.navigateTo({
-      url: '../register/index',
+      url: '../devRegister/index',
     })
   },
   getgroup(){
     wx.navigateTo({
-      url: '../group/index',
+      url: '../areaGroup/index',
     })
   }
 })

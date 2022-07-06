@@ -32,13 +32,13 @@
 <i-panel>
     <i-cell title="{{currentArea}}" label="为当前区域">
       <view class="operat" slot="footer">
-        <view bindtap="handleOpen1">切换区域</view>
-        <view bindtap="getgroup">设置区域</view>
+        <i-icon class="i_icon" bindtap="handleOpen1" type="more"  size="20" color="#000000"></i-icon>
+        <i-icon class="i_icon" bindtap="getgroup" type="setup"  size="20" color="#000000"></i-icon>
       </view>
     </i-cell>
 </i-panel>
-<i-modal title="选择区域" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
-      <i-radio-group current="{{currentArea}}" bindchange="handleFruitChange">
+<i-modal title="选择区域" visible="{{ visible1 }}" actions="{{ actionsOk }}" bind:click="actionsOkFn">
+      <i-radio-group current="{{currentRadioArea}}" bindchange="handleFruitChange">
           <i-radio wx:for="{{areaGroup}}" wx:key="index" value="{{item.name}}" labelId="{{item.id}}">
           </i-radio>
       </i-radio-group>

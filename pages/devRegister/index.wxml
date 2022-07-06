@@ -1,0 +1,27 @@
+<i-panel>
+    <i-input value="{{ value1 }}" title="设备唯一码" maxlength="20"/>
+    <i-input value="{{ value2 }}" type="number" title="设备编号" maxlength="20" />
+    <i-input value="{{ value3 }}" title="备注" maxlength="20" maxlength="20" />
+    <i-input value="{{ value4 }}" title="标签（选填）" maxlength="20"/>
+</i-panel>
+
+<i-panel>
+      <i-cell title="服务套餐（脉冲版）">
+        <view class="operat" slot="footer">
+          <i-icon class="i_icon" bindtap="setTaocan" type="add"  size="20" color="#000000"></i-icon>
+        </view>
+      </i-cell>
+</i-panel>
+<i-panel>
+    <i-cell-group>
+    <block wx:for="{{taocanData}}" wx:key="index">
+      <i-cell title="{{item.name}}" label="{{item.price}}元/{{item.duration}}分钟/{{item.pulse}}币">
+        <view class="operat" slot="footer">
+          <i-icon class="i_icon" data-dataname="{{item.name}}" data-dataid="{{item.id}}" data-dataindex="{{index+1}}" bindtap="setTaocan" data-funtype="1" type="brush"  size="20" color="#000000"></i-icon>
+          <i-icon class="i_icon" data-dataname="{{item.name}}" data-dataid="{{item.id}}" data-dataindex="{{index+1}}" bindtap="delTaocan" data-funtype="2" type="delete"  size="20" color="#000000"></i-icon>
+        </view>
+      </i-cell>
+    </block>
+  </i-cell-group>
+</i-panel>
+<view class="sub_reg">提交</view>

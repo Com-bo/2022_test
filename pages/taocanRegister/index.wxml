@@ -1,0 +1,9 @@
+<i-panel>
+    <i-input value="{{ value1 }}" title="套餐名称" maxlength="20"/>
+    <i-input value="{{ value2 }}" type="number" title="套餐价格" maxlength="20" />
+    <i-input value="{{ value3 }}" title="套餐时长" maxlength="20" maxlength="20" />
+    <i-input value="{{ value4 }}" title="套餐脉冲" maxlength="20"/>
+</i-panel>
+<i-button type="success" bindtap="saveTaocan">提交</i-button>
+<i-toast id="toast" />
+<i-message id="message" />
